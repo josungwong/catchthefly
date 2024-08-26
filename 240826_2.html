@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            position: absolute;
+            cursor: crosshair;
+            transition: 0.3s;
+        }
+        .button-box{
+            display: flex;
+            justify-content: center;
+        }
+        body {
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
+}
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+    </style>
+</head>
+<body>
+    <div id="box" onclick="stopClock()"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSygeoqHRJaGnRzZYiTSXPhPjIMPzKru6edaw&s" alt="" width="75px"></div>
+    <div class="button-box">
+        <button onclick="DC(1)">easy</button>
+        <button onclick="DC(2)">normal</button>
+        <button onclick="DC(3)">hard</button>
+    </div>
+    
+
+
+    <script>
+
+
+
+
+let BOX = document.getElementById("box")
+let randomPosition = () => {
+            let X = Math.floor(Math.random()*100)
+            let Y = Math.floor(Math.random()*100)
+            console.log(X,Y)
+            BOX.style.left = `${X}%`
+            BOX.style.top = `${Y}%`
+            BOX.style.rotate = `${X+Y}deg`
+            
+        }
+
+let time = 1000
+let timer
+function stopClock() {clearInterval(timer);}
+let DC = (dife) =>{
+    console.log(dife)
+    if(dife == 1){
+        stopClock()
+        time = 700
+        timer = setInterval(randomPosition,time)
+    }else if(dife == 2){
+        stopClock()
+        time = 500
+        timer = setInterval(randomPosition,time)
+    }else if(dife == 3){
+        stopClock()
+        time = 400
+        timer = setInterval(randomPosition,time)
+    }
+    
+}
+
+        
+
+    </script>
+</body>
+</html>
