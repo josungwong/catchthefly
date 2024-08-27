@@ -6,7 +6,7 @@
     <title>catchthefly</title>
     <style>
         *{
-            cursor: crosshair;
+            cursor: none;
             margin: 0;
         }
         #box{
@@ -58,10 +58,14 @@ img {
     text-align: center;
     line-height: 100px;
 }
+#cursor{
+    position: absolute;
+    transform: translate(-45%,-45%);
+}
     </style>
 </head>
 <body>
-    <div id="box" onclick="stopClock()"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSygeoqHRJaGnRzZYiTSXPhPjIMPzKru6edaw&s" alt="" width="75px"></div>
+    <div id="box" onclick="stopClock()"><img id="img" src="/img/파리.png" alt="" width="75px"></div>
     <div class="button-box">
         <button onclick="DC(1)">easy</button>
         <button onclick="DC(2)">normal</button>
@@ -73,11 +77,15 @@ img {
     <div id="finish">성공</div>
     
     <div id="screen-box">클릭수: </div>
-
+    <div id="cursor">
+        <img src="/img/파리채.png" alt="" id="cursor-img" width="50px">
+    </div>
     <script>
 let SCREEN = document.getElementById("screen-box")
+let IMG = document.getElementById("img")
 let a = document.getElementById("finish")
 let BOX = document.getElementById("box")
+let CIMG = document.getElementById("cursor-img")
 let clicked = 0
 let randomPosition = () => {
             let X = Math.floor(Math.random()*90)
@@ -92,6 +100,7 @@ let time = 1000
 let timer
 function stopClock() {
     clearInterval(timer);
+    document.getElementById("img").src = "/img/파리2.png"
     if(time!==1000)a.style.display = "block"
     }
 let DC = (dife) =>{
@@ -118,6 +127,7 @@ let DC = (dife) =>{
         timer = setInterval(randomPosition,time)
     }
     clicked = 0
+    document.getElementById("img").src = "/img/파리.png"
     document.getElementById("screen-box").innerHTML = `클릭수: ${clicked}`
     a.style.display = "none"
     BOX.style.display = "block"
@@ -130,7 +140,17 @@ let count = () => {
 }
 SCREEN.addEventListener("click",count)
         
-
+document.addEventListener("mousemove",(e)=>{
+    let mouseX = e.pageX ; 
+    let mouseY = e.pageY ; 
+    let CURSOR = document.getElementById("cursor")
+    CURSOR.style.left = mouseX + 'px';
+    CURSOR.style.top = mouseY + 'px';
+})
+document.addEventListener("click",()=>{
+    document.getElementById("cursor-img").src = "/img/전기.png"
+    setTimeout(function(){document.getElementById("cursor-img").src = "/img/파리채.png"}, 200);
+})
     </script>
 </body>
 </html>
