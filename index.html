@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        *{
+            cursor: crosshair;
+        }
         #box{
             position: absolute;
-            cursor: crosshair;
             transition: 0.3s;
         }
         .button-box{
@@ -18,7 +20,7 @@
   -webkit-user-select:none;
   -moz-user-select:none;
   -ms-user-select:none;
-  user-select:none
+  user-select:none;
 }
 img {
   -webkit-user-drag: none;
@@ -26,6 +28,17 @@ img {
   -moz-user-drag: none;
   -o-user-drag: none;
   user-drag: none;
+}
+#finish{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-weight: bold;
+    font-size: 100px;
+    color: red;
+    transition: 0.3s;
+    transform: translate(-50%,-50%);
+    display: none;
 }
     </style>
 </head>
@@ -36,14 +49,14 @@ img {
         <button onclick="DC(2)">normal</button>
         <button onclick="DC(3)">hard</button>
     </div>
+
+    <div id="finish">성공</div>
     
 
 
     <script>
 
-
-
-
+let a = document.getElementById("finish")
 let BOX = document.getElementById("box")
 let randomPosition = () => {
             let X = Math.floor(Math.random()*100)
@@ -57,7 +70,10 @@ let randomPosition = () => {
 
 let time = 1000
 let timer
-function stopClock() {clearInterval(timer);}
+function stopClock() {
+    clearInterval(timer);
+    if(time!==1000)a.style.display = "block"
+    }
 let DC = (dife) =>{
     console.log(dife)
     if(dife == 1){
@@ -73,7 +89,7 @@ let DC = (dife) =>{
         time = 400
         timer = setInterval(randomPosition,time)
     }
-    
+    a.style.display = "none"
 }
 
         
