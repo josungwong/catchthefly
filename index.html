@@ -1,156 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>catchthefly</title>
     <style>
-        *{
-            cursor: none;
-            margin: 0;
-        }
-        #box{
-            position: absolute;
-            transition: 0.3s;
-            z-index: 2;
-            display: none;
-        }
-        button{
-            z-index: 3;
-            margin: 10px 10px;
-        }
-        .button-box{
-            display: flex;
-            justify-content: center;
-        }
-        body {
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none;
-}
-img {
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-}
-#finish{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    font-weight: bold;
-    font-size: 100px;
-    color: red;
-    transition: 0.3s;
-    transform: translate(-50%,-50%);
-    display: none;
-    z-index: 3;
-}
-#screen-box{
-    z-index: 1;
-    display: inline;
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    height: 100vh;
-    text-align: center;
-    line-height: 100px;
-}
-#cursor{
-    position: absolute;
-    transform: translate(-45%,-45%);
-}
+      * {
+        cursor: none;
+        margin: 0;
+      }
+      #box {
+        position: absolute;
+        transition: 0.3s;
+        z-index: 2;
+        display: none;
+      }
+      button {
+        z-index: 3;
+        margin: 10px 10px;
+      }
+      .button-box {
+        display: flex;
+        justify-content: center;
+      }
+      body {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      img {
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+      }
+      #finish {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        font-weight: bold;
+        font-size: 100px;
+        color: red;
+        transition: 0.3s;
+        transform: translate(-50%, -50%);
+        display: none;
+        z-index: 3;
+      }
+      #screen-box {
+        z-index: 1;
+        display: inline;
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        height: 100vh;
+        text-align: center;
+        line-height: 100px;
+      }
+      #cursor {
+        position: absolute;
+        transform: translate(-30%, -30%);
+      }
     </style>
-</head>
-<body>
-    <div id="box" onclick="stopClock()"><img id="img" src="/img/파리.png" alt="" width="75px"></div>
+  </head>
+  <body>
+    <div id="box" onclick="stopClock()">
+      <img id="img" src="/img/파리.png" alt="" width="75px" />
+    </div>
     <div class="button-box">
-        <button onclick="DC(1)">easy</button>
-        <button onclick="DC(2)">normal</button>
-        <button onclick="DC(3)">hard</button>
-        <button onclick="DC(4)">harder</button>
-        <button onclick="DC(5)">impossible</button>
+      <button onclick="DC(1)">easy</button>
+      <button onclick="DC(2)">normal</button>
+      <button onclick="DC(3)">hard</button>
+      <button onclick="DC(4)">harder</button>
+      <button onclick="DC(5)">impossible</button>
     </div>
 
     <div id="finish">성공</div>
-    
-    <div id="screen-box">클릭수: </div>
+
+    <div id="screen-box">클릭수:</div>
     <div id="cursor">
-        <img src="/img/파리채.png" alt="" id="cursor-img" width="50px">
+      <img src="/img/파리채.png" alt="" id="cursor-img" width="70px" />
     </div>
     <script>
-let SCREEN = document.getElementById("screen-box")
-let IMG = document.getElementById("img")
-let a = document.getElementById("finish")
-let BOX = document.getElementById("box")
-let CIMG = document.getElementById("cursor-img")
-let clicked = 0
-let randomPosition = () => {
-            let X = Math.floor(Math.random()*90)
-            let Y = Math.floor(Math.random()*90)
-            BOX.style.left = `${X}%`
-            BOX.style.top = `${Y}%`
-            BOX.style.rotate = `${Math.floor(Math.random()*360)}deg`
-            
+      let SCREEN = document.getElementById("screen-box");
+      let IMG = document.getElementById("img");
+      let a = document.getElementById("finish");
+      let BOX = document.getElementById("box");
+      let CIMG = document.getElementById("cursor-img");
+      let clicked = 0;
+      let randomPosition = () => {
+        let X = Math.floor(Math.random() * 90);
+        let Y = Math.floor(Math.random() * 90);
+        BOX.style.left = `${X}%`;
+        BOX.style.top = `${Y}%`;
+        BOX.style.rotate = `${Math.floor(Math.random() * 360)}deg`;
+      };
+
+      let time = 1000;
+      let timer;
+      function stopClock() {
+        clearInterval(timer);
+        document.getElementById("img").src = "/img/파리2.png";
+        if (time !== 1000) a.style.display = "block";
+      }
+      let DC = (dife) => {
+        console.log(dife);
+        if (dife == 1) {
+          stopClock();
+          time = 999;
+          timer = setInterval(randomPosition, time);
+        } else if (dife == 2) {
+          stopClock();
+          time = 700;
+          timer = setInterval(randomPosition, time);
+        } else if (dife == 3) {
+          stopClock();
+          time = 500;
+          timer = setInterval(randomPosition, time);
+        } else if (dife == 4) {
+          stopClock();
+          time = 300;
+          timer = setInterval(randomPosition, time);
+        } else if (dife == 5) {
+          stopClock();
+          time = 100;
+          timer = setInterval(randomPosition, time);
         }
+        clicked = 0;
+        document.getElementById("img").src = "/img/파리.png";
+        document.getElementById("screen-box").innerHTML = `클릭수: ${clicked}`;
+        a.style.display = "none";
+        BOX.style.display = "block";
+      };
 
-let time = 1000
-let timer
-function stopClock() {
-    clearInterval(timer);
-    document.getElementById("img").src = "/img/파리2.png"
-    if(time!==1000)a.style.display = "block"
-    }
-let DC = (dife) =>{
-    console.log(dife)
-    if(dife == 1){
-        stopClock()
-        time = 999
-        timer = setInterval(randomPosition,time)
-    }else if(dife == 2){
-        stopClock()
-        time = 700
-        timer = setInterval(randomPosition,time)
-    }else if(dife == 3){
-        stopClock()
-        time = 500
-        timer = setInterval(randomPosition,time)
-    }else if(dife == 4){
-        stopClock()
-        time = 300
-        timer = setInterval(randomPosition,time)
-    }else if(dife == 5){
-        stopClock()
-        time = 100
-        timer = setInterval(randomPosition,time)
-    }
-    clicked = 0
-    document.getElementById("img").src = "/img/파리.png"
-    document.getElementById("screen-box").innerHTML = `클릭수: ${clicked}`
-    a.style.display = "none"
-    BOX.style.display = "block"
-}
+      let count = () => {
+        clicked += 1;
+        console.log(clicked);
+        document.getElementById("screen-box").innerHTML = `클릭수: ${clicked}`;
+      };
+      SCREEN.addEventListener("click", count);
 
-let count = () => {
-    clicked += 1
-    console.log(clicked)
-    document.getElementById("screen-box").innerHTML = `클릭수: ${clicked}`
-}
-SCREEN.addEventListener("click",count)
-        
-document.addEventListener("mousemove",(e)=>{
-    let mouseX = e.pageX ; 
-    let mouseY = e.pageY ; 
-    let CURSOR = document.getElementById("cursor")
-    CURSOR.style.left = mouseX + 'px';
-    CURSOR.style.top = mouseY + 'px';
-})
-document.addEventListener("click",()=>{
-    document.getElementById("cursor-img").src = "/img/전기.png"
-    setTimeout(function(){document.getElementById("cursor-img").src = "/img/파리채.png"}, 200);
-})
+      document.addEventListener("mousemove", (e) => {
+        let mouseX = e.pageX;
+        let mouseY = e.pageY;
+        let CURSOR = document.getElementById("cursor");
+        CURSOR.style.left = mouseX + "px";
+        CURSOR.style.top = mouseY + "px";
+      });
+      document.addEventListener("click", () => {
+        document.getElementById("cursor-img").src = "/img/전기.png";
+        setTimeout(function () {
+          document.getElementById("cursor-img").src = "/img/파리채.png";
+        }, 300);
+      });
     </script>
-</body>
+  </body>
 </html>
