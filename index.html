@@ -16,6 +16,7 @@
         }
         button{
             z-index: 3;
+            margin: 0 10px;
         }
         .button-box{
             display: flex;
@@ -62,6 +63,8 @@ img {
         <button onclick="DC(1)">easy</button>
         <button onclick="DC(2)">normal</button>
         <button onclick="DC(3)">hard</button>
+        <button onclick="DC(4)">harder</button>
+        <button onclick="DC(5)">impossible</button>
     </div>
 
     <div id="finish">성공</div>
@@ -93,15 +96,23 @@ let DC = (dife) =>{
     console.log(dife)
     if(dife == 1){
         stopClock()
-        time = 700
+        time = 999
         timer = setInterval(randomPosition,time)
     }else if(dife == 2){
         stopClock()
-        time = 500
+        time = 700
         timer = setInterval(randomPosition,time)
     }else if(dife == 3){
         stopClock()
-        time = 400
+        time = 500
+        timer = setInterval(randomPosition,time)
+    }else if(dife == 4){
+        stopClock()
+        time = 300
+        timer = setInterval(randomPosition,time)
+    }else if(dife == 5){
+        stopClock()
+        time = 100
         timer = setInterval(randomPosition,time)
     }
     clicked = 0
