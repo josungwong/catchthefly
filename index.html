@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>catchthefly</title>
     <style>
         *{
             cursor: crosshair;
@@ -13,6 +13,7 @@
             position: absolute;
             transition: 0.3s;
             z-index: 2;
+            display: none;
         }
         button{
             z-index: 3;
@@ -42,6 +43,7 @@ img {
     font-weight: bold;
     font-size: 100px;
     color: red;
+    transition: 0.3s;
     transform: translate(-50%,-50%);
     display: none;
     z-index: 3;
@@ -80,7 +82,6 @@ let clicked = 0
 let randomPosition = () => {
             let X = Math.floor(Math.random()*90)
             let Y = Math.floor(Math.random()*90)
-            console.log(X,Y)
             BOX.style.left = `${X}%`
             BOX.style.top = `${Y}%`
             BOX.style.rotate = `${Math.floor(Math.random()*360)}deg`
@@ -98,32 +99,28 @@ let DC = (dife) =>{
     if(dife == 1){
         stopClock()
         time = 999
-        BOX.style.transition = "0.5s"
         timer = setInterval(randomPosition,time)
     }else if(dife == 2){
         stopClock()
         time = 700
-        BOX.style.transition = "0.3s"
         timer = setInterval(randomPosition,time)
     }else if(dife == 3){
         stopClock()
         time = 500
-        BOX.style.transition = "0.3s"
         timer = setInterval(randomPosition,time)
     }else if(dife == 4){
         stopClock()
         time = 300
-        BOX.style.transition = "0.2s"
         timer = setInterval(randomPosition,time)
     }else if(dife == 5){
         stopClock()
         time = 100
-        BOX.style.transition = "0.1s"
         timer = setInterval(randomPosition,time)
     }
     clicked = 0
     document.getElementById("screen-box").innerHTML = `클릭수: ${clicked}`
     a.style.display = "none"
+    BOX.style.display = "block"
 }
 
 let count = () => {
