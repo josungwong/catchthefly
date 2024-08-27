@@ -7,13 +7,15 @@
     <style>
         *{
             cursor: crosshair;
+            margin: 0;
         }
         #box{
             position: absolute;
             transition: 0.3s;
+            z-index: 2;
         }
         button{
-            z-index: 1;
+            z-index: 3;
         }
         .button-box{
             display: flex;
@@ -42,6 +44,15 @@ img {
     transition: 0.3s;
     transform: translate(-50%,-50%);
     display: none;
+    z-index: 3;
+}
+#screen-box{
+    z-index: 1;
+    display: inline;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 120vh;
 }
     </style>
 </head>
@@ -55,12 +66,13 @@ img {
 
     <div id="finish">성공</div>
     
-
+    <div id="screen-box">클릭수: </div>
 
     <script>
-
+let SCREEN = document.getElementById("screen-box")
 let a = document.getElementById("finish")
 let BOX = document.getElementById("box")
+let clicked = 0
 let randomPosition = () => {
             let X = Math.floor(Math.random()*100)
             let Y = Math.floor(Math.random()*100)
@@ -92,9 +104,17 @@ let DC = (dife) =>{
         time = 400
         timer = setInterval(randomPosition,time)
     }
+    clicked = 0
+    document.getElementById("screen-box").innerHTML = `클릭수: ${clicked}`
     a.style.display = "none"
 }
 
+let count = () => {
+    clicked += 1
+    console.log(clicked)
+    document.getElementById("screen-box").innerHTML = `클릭수: ${clicked}`
+}
+SCREEN.addEventListener("click",count)
         
 
     </script>
