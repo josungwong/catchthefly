@@ -42,7 +42,6 @@ img {
     font-weight: bold;
     font-size: 100px;
     color: red;
-    transition: 0.3s;
     transform: translate(-50%,-50%);
     display: none;
     z-index: 3;
@@ -99,22 +98,27 @@ let DC = (dife) =>{
     if(dife == 1){
         stopClock()
         time = 999
+        BOX.style.transition = "0.5s"
         timer = setInterval(randomPosition,time)
     }else if(dife == 2){
         stopClock()
         time = 700
+        BOX.style.transition = "0.3s"
         timer = setInterval(randomPosition,time)
     }else if(dife == 3){
         stopClock()
         time = 500
+        BOX.style.transition = "0.3s"
         timer = setInterval(randomPosition,time)
     }else if(dife == 4){
         stopClock()
         time = 300
+        BOX.style.transition = "0.2s"
         timer = setInterval(randomPosition,time)
     }else if(dife == 5){
         stopClock()
         time = 100
+        BOX.style.transition = "0.1s"
         timer = setInterval(randomPosition,time)
     }
     clicked = 0
