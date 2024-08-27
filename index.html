@@ -83,7 +83,7 @@ let randomPosition = () => {
             console.log(X,Y)
             BOX.style.left = `${X}%`
             BOX.style.top = `${Y}%`
-            BOX.style.rotate = `${X+Y}deg`
+            BOX.style.rotate = `${Math.floor(Math.random()*360)}deg`
             
         }
 
